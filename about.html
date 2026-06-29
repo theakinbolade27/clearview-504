@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Clearview</title>
+    <style>
+        :root {
+            --primary-color: #145214;
+            --bg-color: #ffffff;
+            --text-color: #032B44;
+            --border-color: #145214;
+            --base-font-size: 18px;
+            --line-spacing: 1.6;
+            --panel-bg: #ffffff;
+            --card-bg: #eaf7ea;
+            --card-text: #145214;
+            --button-text: #ffffff;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: var(--base-font-size);
+            line-height: var(--line-spacing);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            --bg-color: #0b2d17;
+            --text-color: #eaf7ea;
+            --primary-color: #eaf7ea;
+            --panel-bg: #0b2d17;
+            --card-bg: #145214;
+            --card-text: #ffffff;
+            --button-text: #ffffff;
+        }
+        body.high-contrast {
+            --bg-color: #eaf7ea;
+            --text-color: #145214;
+            --primary-color: #000000;
+            --panel-bg: #eaf7ea;
+            --card-bg: #ffffff;
+            --card-text: #145214;
+            --button-text: #ffffff;
+        }
+        nav {
+            background: var(--primary-color);
+            color: var(--button-text);
+            padding: 1rem;
+            text-align: center;
+        }
+        nav a.nav-link {
+            color: var(--button-text);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            padding: 0.45rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        nav a.nav-link:hover,
+        nav a.nav-link:focus-visible {
+            text-decoration: underline;
+            background: rgba(255,255,255,0.16);
+            outline: 3px solid #80B8FF;
+            outline-offset: 2px;
+        }
+        main {
+            background: var(--panel-bg);
+            padding: 1.5rem;
+            max-width: 900px;
+            margin: 1.5rem auto;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .grid-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            color: var(--card-text);
+        }
+        .section-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .image-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        .about-image {
+            width: calc(50% - 0.5rem);
+            max-width: 440px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+        @media (max-width: 760px) {
+            .about-image {
+                width: 100%;
+            }
+        }
+        h1, h2 {
+            margin-top: 0;
+            color: #145214;
+        }
+
+        @media (max-width: 760px) {
+            nav {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            nav a.nav-link {
+                display: block;
+            }
+            main {
+                padding: 1rem;
+                margin: 0.75rem;
+            }
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            .about-image {
+                width: 100%;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav aria-label="Primary navigation">
+        <a class="nav-link" href="index.html">Home 🏠</a>
+        <a class="nav-link" href="about.html">About ℹ️</a>
+        <span aria-label="Clearview">CLEARVIEW</span>
+        <a class="nav-link" href="resource.html">RESOURCE📚</a>
+        <a class="nav-link" href="Acessibility.html">Accessibility 🪛</a>
+        <a class="nav-link" href="contact.html">Contact 📫</a>
+    </nav>
+    <main id="main-content" tabindex="-1">
+        <header>
+            <h1>ABOUT CLEARVIEW 💡</h1>
+        </header>
+        <p>clearview was built by a 500L BMT student at FUTA to serve two purposes: helping visually impaired users access information freely, and helping BMT 504 students study and pass their exams.</p>
+        <p>Every page is designed with accessibility first large text, high contrast, and screen reader support.</p>
+        <div class="image-row">
+            <img class="about-image" src="assets/1.jpeg" alt="A visually impaired person using a computer with screen reader software, navigating through a website.">
+            <img class="about-image" src="assets/2.jpeg" alt="A visually impaired person using a computer with screen reader software, navigating through a website.">
+        </div>
+        <section class="section-card">
+            <h2>Who We Serve 🤝</h2>
+            <div class="grid-container">
+                <div class="grid-item">🙎‍♂️Zadok, age 37, low vision, needs larger text 🔎</div>
+                <div class="grid-item">👨‍🦱Mr Bello, age 45, totally blind, uses screen reader 🎧</div>
+                <div class="grid-item">👩‍🦰Dolapo, age 28, has low vision and uses magnification software 🖥️</div>
+                <div class="grid-item">👨‍🦳Agbegs, age 50, has low vision and uses screen reader 🎤</div>
+                <div class="grid-item">👨‍🦱Abeeb, age 27, color blind, uses high contrast mode 🎨</div>
+            </div>
+        </section>
+    </main>
+    <script src="assets/accessibility-settings.js"></script>
+</body>
+</html>

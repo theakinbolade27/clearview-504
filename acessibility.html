@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Settings</title>
+    <style>
+        :root {
+            --primary-color: #145214;
+            --bg-color: #ffffff;
+            --text-color: #032B44;
+            --border-color: #145214;
+            --base-font-size: 18px;
+            --line-spacing: 1.6;
+            --light-bg: #eaf7ea;
+        }
+
+        body.dark-mode {
+            --primary-color: #eaf7ea;
+            --bg-color: #0b2d17;
+            --text-color: #eaf7ea;
+            --border-color: #145214;
+        }
+
+        body.high-contrast {
+            --primary-color: #000;
+            --bg-color: #eaf7ea;
+            --text-color: #145214;
+            --border-color: #145214;
+        }
+
+        body.high-contrast.dark-mode {
+            --bg-color: #0b2d17;
+            --text-color: #eaf7ea;
+        }
+
+        * {
+            font-size: var(--base-font-size);
+            line-height: var(--line-spacing);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
+            min-height: 100vh;
+        }
+
+        nav {
+            background: var(--primary-color);
+            color: #ffffff;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav a.nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            padding: 0.45rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        nav a.nav-link:hover,
+        nav a.nav-link:focus-visible {
+            text-decoration: underline;
+            background: rgba(255,255,255,0.16);
+            outline: 3px solid #80B8FF;
+            outline-offset: 2px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .accessibility-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--bg-color);
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .setting-group {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+        }
+
+        .setting-group.size-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .setting-group.size-row label {
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        .setting-group.size-row .control-group {
+            margin-left: auto;
+            justify-content: flex-end;
+            min-width: 220px;
+        }
+
+        .setting-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .setting-group.toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .setting-group.toggle-row label {
+            margin-bottom: 0;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .setting-group.toggle-row .control-group {
+            margin-left: auto;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: 2px solid var(--text-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            outline: 3px solid #80B8FF;
+            outline-offset: 2px;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .toggle-btn {
+            padding: 10px 25px;
+            font-weight: bold;
+        }
+
+        .toggle-btn.active {
+            background-color: #145214;
+            color: white;
+        }
+
+        .value-display {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #eaf7ea;
+            border-radius: 6px;
+            min-width: 100px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .body.high-contrast .value-display {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .reset-section {
+            margin-top: 30px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .reset-btn {
+            background-color: #cc0000;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+<body>
+    <nav aria-label="Primary navigation">
+        <a class="nav-link" href="index.html">Home 🏠</a>
+        <a class="nav-link" href="about.html">About ℹ️</a>
+        <span aria-label="Clearview">CLEARVIEW</span>
+        <a class="nav-link" href="resource.html">RESOURCE📚</a>
+        <a class="nav-link" href="Acessibility.html">Accessibility 🪛</a>
+        <a class="nav-link" href="contact.html">Contact 📫</a>
+    </nav>
+
+    <div id="accessibility-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+    <main class="accessibility-container" id="main-content" tabindex="-1">
+        <h1>🪛 Accessibility Settings</h1>
+
+        <!-- Font Size Control -->
+        <div class="setting-group size-row">
+            <label for="font-size-label">Font Size</label>
+            <div class="control-group">
+                <button onclick="decreaseFont()" aria-label="Decrease font size">−</button>
+                <div class="value-display" id="font-display">18px</div>
+                <button onclick="increaseFont()" aria-label="Increase font size">+</button>
+            </div>
+        </div>
+
+        <!-- Dark Mode Toggle -->
+        <div class="setting-group toggle-row">
+            <label>Dark Mode</label>
+            <div class="control-group">
+                <button class="toggle-btn" id="dark-mode-btn" onclick="toggleDarkMode()">Dark Mode: OFF</button>
+            </div>
+        </div>
+
+        <!-- High Contrast Toggle -->
+        <div class="setting-group toggle-row">
+            <label>High Contrast</label>
+            <div class="control-group">
+                <button class="toggle-btn" id="high-contrast-btn" onclick="toggleHighContrast()">High Contrast: OFF</button>
+            </div>
+        </div>
+
+        <!-- Line Spacing Control -->
+        <div class="setting-group size-row">
+            <label for="line-spacing-label">Line Spacing</label>
+            <div class="control-group">
+                <button onclick="decreaseLineSpacing()" aria-label="Decrease line spacing">−</button>
+                <div class="value-display" id="spacing-display">1.6</div>
+                <button onclick="increaseLineSpacing()" aria-label="Increase line spacing">+</button>
+            </div>
+        </div>
+
+        <!-- Reset All Button -->
+        <div class="reset-section">
+            <button class="reset-btn" onclick="resetAll()">Reset All Settings</button>
+        </div>
+    </main>
+
+    <script src="assets/accessibility-settings.js"></script>
+    <script>
+        const DEFAULT_FONT_SIZE = 18;
+        const MIN_FONT_SIZE = 12;
+        const MAX_FONT_SIZE = 28;
+        const FONT_STEP = 2;
+
+        const DEFAULT_LINE_SPACING = 1.6;
+        const MIN_LINE_SPACING = 1.2;
+        const MAX_LINE_SPACING = 2.4;
+        const SPACING_STEP = 0.2;
+
+        function announce(message) {
+            const status = document.getElementById('accessibility-status');
+            if (status) {
+                status.textContent = message;
+            }
+        }
+
+        // Initialize settings from localStorage
+        function initializeSettings() {
+            const savedFontSize = localStorage.getItem('fontSize') || DEFAULT_FONT_SIZE;
+            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+            const savedHighContrast = localStorage.getItem('highContrast') === 'true';
+            const savedLineSpacing = localStorage.getItem('lineSpacing') || DEFAULT_LINE_SPACING;
+
+            setFontSize(parseInt(savedFontSize));
+            if (savedDarkMode) toggleDarkMode();
+            if (savedHighContrast) toggleHighContrast();
+            setLineSpacing(parseFloat(savedLineSpacing));
+            announce('Accessibility settings loaded.');
+        }
+
+        // Font Size Functions
+        function increaseFont() {
+            const current = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--base-font-size'));
+            const newSize = Math.min(current + FONT_STEP, MAX_FONT_SIZE);
+            setFontSize(newSize);
+        }
+
+        function decreaseFont() {
+            const current = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--base-font-size'));
+            const newSize = Math.max(current - FONT_STEP, MIN_FONT_SIZE);
+            setFontSize(newSize);
+        }
+
+        function setFontSize(size) {
+            document.documentElement.style.setProperty('--base-font-size', size + 'px');
+            document.getElementById('font-display').textContent = size + 'px';
+            localStorage.setItem('fontSize', size);
+            announce('Font size set to ' + size + ' pixels.');
+            window.dispatchEvent(new Event('accessibility-settings-changed'));
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const isDarkMode = !document.body.classList.contains('dark-mode');
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            const btn = document.getElementById('dark-mode-btn');
+            btn.textContent = isDarkMode ? 'Dark Mode: ON' : 'Dark Mode: OFF';
+            btn.classList.toggle('active', isDarkMode);
+            btn.setAttribute('aria-pressed', isDarkMode ? 'true' : 'false');
+            localStorage.setItem('darkMode', isDarkMode);
+            announce(isDarkMode ? 'Dark mode enabled.' : 'Dark mode disabled.');
+            window.dispatchEvent(new Event('accessibility-settings-changed'));
+        }
+
+        // High Contrast Toggle
+        function toggleHighContrast() {
+            const isHighContrast = !document.body.classList.contains('high-contrast');
+            document.body.classList.toggle('high-contrast', isHighContrast);
+            const btn = document.getElementById('high-contrast-btn');
+            btn.textContent = isHighContrast ? 'High Contrast: ON' : 'High Contrast: OFF';
+            btn.classList.toggle('active', isHighContrast);
+            btn.setAttribute('aria-pressed', isHighContrast ? 'true' : 'false');
+            localStorage.setItem('highContrast', isHighContrast);
+            announce(isHighContrast ? 'High contrast enabled.' : 'High contrast disabled.');
+            window.dispatchEvent(new Event('accessibility-settings-changed'));
+        }
+
+        // Line Spacing Functions
+        function increaseLineSpacing() {
+            const current = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--line-spacing'));
+            const newSpacing = Math.min((current * 10 + SPACING_STEP * 10) / 10, MAX_LINE_SPACING);
+            setLineSpacing(newSpacing);
+        }
+
+        function decreaseLineSpacing() {
+            const current = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--line-spacing'));
+            const newSpacing = Math.max((current * 10 - SPACING_STEP * 10) / 10, MIN_LINE_SPACING);
+            setLineSpacing(newSpacing);
+        }
+
+        function setLineSpacing(spacing) {
+            document.documentElement.style.setProperty('--line-spacing', spacing);
+            document.getElementById('spacing-display').textContent = spacing.toFixed(1);
+            localStorage.setItem('lineSpacing', spacing);
+            announce('Line spacing set to ' + spacing.toFixed(1) + '.');
+            window.dispatchEvent(new Event('accessibility-settings-changed'));
+        }
+
+        // Reset All Settings
+        function resetAll() {
+            // Remove dark mode and high contrast classes
+            document.body.classList.remove('dark-mode', 'high-contrast');
+            
+            // Reset button states
+            document.getElementById('dark-mode-btn').textContent = 'Dark Mode: OFF';
+            document.getElementById('dark-mode-btn').classList.remove('active');
+            document.getElementById('high-contrast-btn').textContent = 'High Contrast: OFF';
+            document.getElementById('high-contrast-btn').classList.remove('active');
+
+            // Reset font size and line spacing
+            setFontSize(DEFAULT_FONT_SIZE);
+            setLineSpacing(DEFAULT_LINE_SPACING);
+
+            // Clear localStorage
+            localStorage.clear();
+            announce('All accessibility settings reset.');
+            window.dispatchEvent(new Event('accessibility-settings-changed'));
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', initializeSettings);
+    </script>
+    </div>
+</body>
+</html>

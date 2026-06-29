@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clearview</title>
+    <style>
+        :root {
+            --primary-color: #145214;
+            --bg-color: #ffffff;
+            --text-color: #032B44;
+            --border-color: #145214;
+            --base-font-size: 18px;
+            --line-spacing: 1.6;
+            --panel-bg: #ffffff;
+            --card-bg: #eaf7ea;
+            --card-text: #145214;
+            --button-text: #ffffff;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: var(--base-font-size);
+            line-height: var(--line-spacing);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            --bg-color: #0b2d17;
+            --text-color: #eaf7ea;
+            --primary-color: #eaf7ea;
+            --panel-bg: #0b2d17;
+            --card-bg: #145214;
+            --card-text: #ffffff;
+            --button-text: #ffffff;
+        }
+        body.high-contrast {
+            --bg-color: #eaf7ea;
+            --text-color: #145214;
+            --primary-color: #000000;
+            --panel-bg: #eaf7ea;
+            --card-bg: #ffffff;
+            --card-text: #145214;
+            --button-text: #ffffff;
+        }
+        nav {
+            background: var(--primary-color);
+            color: var(--button-text);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+        }
+        nav a.nav-link {
+            color: var(--button-text);
+            text-decoration: none;
+            padding: 0.45rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        nav a.nav-link:hover,
+        nav a.nav-link:focus-visible {
+            text-decoration: underline;
+            background: rgba(255,255,255,0.16);
+            outline: 3px solid #80B8FF;
+            outline-offset: 2px;
+        }
+        main {
+            background: var(--panel-bg);
+            padding: 1.5rem;
+            max-width: 1100px;
+            margin: 1.5rem auto;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            scroll-margin-top: 1rem;
+        }
+        header {
+            text-align: center;
+        }
+        .skip-link {
+            display: block;
+            width: 100%;
+            max-width: 620px;
+            margin: 1rem auto;
+            padding: 1rem 1.25rem;
+            background: #145214;
+            color: #ffffff;
+            border-radius: 999px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+        }
+        .skip-link:focus-visible,
+        .skip-link:hover {
+            outline: 3px solid #80B8FF;
+            outline-offset: 2px;
+        }
+        .hero-image {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin: 1rem auto;
+        }
+        .badge-wrap {
+            display: flex;
+            justify-content: flex-start;
+            margin: 0 0 1rem;
+        }
+        .badge {
+            width: 70px;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+        .grid-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1rem auto;
+        }
+        .grid-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.75rem;
+            text-align: center;
+            color: var(--card-text);
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 220px;
+        }
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .actions button {
+            background: var(--primary-color);
+            color: var(--button-text);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.75rem 1.25rem;
+            cursor: pointer;
+            min-width: 220px;
+            width: 220px;
+        }
+        .actions button:hover,
+        .actions button:focus-visible {
+            background: #0f3b13;
+            outline: 3px solid #80B8FF;
+            outline-offset: 2px;
+        }
+        .error {
+            color: #cc0000;
+        }
+        footer {
+            margin-top: 1.5rem;
+            padding: 0.9rem 1rem;
+            text-align: center;
+            background: var(--card-bg);
+            color: var(--card-text);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 760px) {
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            nav a.nav-link {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+            main {
+                padding: 1rem;
+                margin: 0.75rem;
+                border-radius: 10px;
+            }
+            .skip-link {
+                width: calc(100% - 1.5rem);
+                padding: 0.85rem 1rem;
+            }
+            .badge-wrap {
+                justify-content: center;
+            }
+            .actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .actions button {
+                min-width: 0;
+                width: 100%;
+                max-width: 280px;
+            }
+            .grid-item {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav aria-label="Primary navigation">
+        <a class="nav-link" href="index.html">Home 🏠</a>
+        <a class="nav-link" href="about.html">About ℹ️</a>
+        <span aria-label="Clearview">CLEARVIEW</span>
+        <a class="nav-link" href="resource.html">RESOURCE📚</a>
+        <a class="nav-link" href="Acessibility.html">Accessibility 🪛</a>
+        <a class="nav-link" href="contact.html">Contact 📫</a>
+    </nav>
+    <main id="main-content" tabindex="-1"> 
+      <left corner>👀👓</left>
+        <header>
+            <h1> 👀 Welcome to Clearview 🌟</h1>
+            <p>Your gateway to clear insights, inclusive of all perspectives.</p>
+            <p>Designed for everyone, especially for you.</p>
+        </header>
+        <img class="hero-image" src="assets/Screenshot_27-6-2026_201812_www.bing.com.jpeg"
+               alt="A visually impaired person using a computer with screen reader software, navigating through a website."
+            >
+       
+        <div class="actions">
+            <button type="button">Explore resources 🚀</button>
+            <button type="button">Contact us 📞</button>
+        </div>
+         <section class="grid-container" aria-label="Key highlights">
+            <div class="grid-item">resources 📚</div>
+            <div class="grid-item">settings ⚙️</div>
+            <div class="grid-item">help 🆘</div>
+        </section>
+        <footer>learn without  limit, pass without stress</footer>
+    </main>
+    <script src="assets/accessibility-settings.js"></script>
+</body>
+</html>

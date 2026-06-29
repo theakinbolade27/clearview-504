@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources — Clearview</title>
+    <style>
+        :root {
+            --primary-color: #145214;
+            --bg-color: #ffffff;
+            --text-color: #032B44;
+            --border-color: #145214;
+            --base-font-size: 18px;
+            --line-spacing: 1.6;
+            --panel-bg: #ffffff;
+            --card-bg: #eaf7ea;
+            --card-text: #145214;
+            --button-text: #ffffff;
+        }
+        body { margin: 0; font-family: Arial, sans-serif; background: var(--bg-color); color: var(--text-color); font-size: var(--base-font-size); line-height: var(--line-spacing); transition: background-color 0.3s, color 0.3s; }
+        body.dark-mode {
+            --bg-color: #0b2d17;
+            --text-color: #eaf7ea;
+            --primary-color: #eaf7ea;
+            --panel-bg: #0b2d17;
+            --card-bg: #145214;
+            --card-text: #ffffff;
+            --button-text: #ffffff;
+        }
+        body.high-contrast {
+            --bg-color: #eaf7ea;
+            --text-color: #145214;
+            --primary-color: #000000;
+            --panel-bg: #eaf7ea;
+            --card-bg: #ffffff;
+            --card-text: #145214;
+            --button-text: #ffffff;
+        }
+        nav { background: var(--primary-color); color: var(--button-text); padding: 1rem; text-align: center; }
+        nav a.nav-link { color: var(--button-text); text-decoration: none; margin: 0 0.5rem; padding: 0.45rem 0.8rem; border-radius: 6px; font-weight: 600; }
+        nav a.nav-link:hover,
+        nav a.nav-link:focus-visible { text-decoration: underline; background: rgba(255,255,255,0.16); outline: 3px solid #80B8FF; outline-offset: 2px; }
+        main { background: var(--panel-bg); }
+        .resource-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; color: var(--card-text); display: block; width: 100%; max-width: 900px; margin: 0 auto 1rem; }
+        footer { color: var(--card-text); }
+
+        @media (max-width: 760px) {
+            nav {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            nav a.nav-link {
+                display: block;
+            }
+            main {
+                padding: 1rem;
+                margin: 0.75rem;
+                border-radius: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav aria-label="Primary navigation">
+         <a class="nav-link" href="index.html">Home 🏠</a>
+        <a class="nav-link" href="about.html">About ℹ️</a>
+        <span aria-label="Clearview">CLEARVIEW</span>
+        <a class="nav-link" href="resource.html">RESOURCE📚</a>
+        <a class="nav-link" href="Acessibility.html">Accessibility 🪛</a>
+        <a class="nav-link" href="contact.html">Contact 📫</a>
+    </nav>
+    <main id="main-content" tabindex="-1" style="max-width:1100px;margin:1.5rem auto;padding:1.5rem;border-radius:12px;">
+        <h1 style="color:#145214;margin-top:0;">Services & Resources</h1>
+        <p>Below are curated resources to support accessible learning and assistive technology.</p>
+        <section aria-label="Resources list" style="display:block;margin-top:1rem;">
+            <article style="background:#eaf7ea;border:1px solid #145214;padding:1rem;border-radius:8px;color:#145214;display:block;width:100%;max-width:900px;margin:0 auto 1rem;">
+                <h3 style="margin:0 0 0.5rem 0;">📝BMT 504 Study Materials</h3>
+                <p style="margin:0;">Comprehensive notes and practice questions for core topics.</p>
+            </article>
+            <article style="background:#eaf7ea;border:1px solid #145214;padding:1rem;border-radius:8px;color:#145214;display:block;width:100%;max-width:900px;margin:0 auto 1rem;">
+                <h3 style="margin:0 0 0.5rem 0;">📚Lecture note summaries</h3>
+                <p style="margin:0;">Key topics broken down in simple, readable language with large text and high contrast.</p>
+            </article>
+            <article style="background:#eaf7ea;border:1px solid #145214;padding:1rem;border-radius:8px;color:#145214;display:block;width:100%;max-width:900px;margin:0 auto 1rem;">
+                <h3 style="margin:0 0 0.5rem 0;">📢🔊 Screen reader support</h3>
+                <p style="margin:0;">All content is compatible with VoiceOver, NVDA, and JAWS.</p>
+            </article>
+            <article style="background:#eaf7ea;border:1px solid #145214;padding:1rem;border-radius:8px;color:#145214;display:block;width:100%;max-width:900px;margin:0 auto 1rem;">
+                <h3 style="margin:0 0 0.5rem 0;">📖High-contrast PDFs</h3>
+                <p style="margin:0;">Downloadable materials formatted for readability and magnification.</p>
+            </article>
+            <article style="background:#eaf7ea;border:1px solid #145214;padding:1rem;border-radius:8px;color:#145214;display:block;width:100%;max-width:900px;margin:0 auto 1rem;">
+                <h3 style="margin:0 0 0.5rem 0;">🔧Assistive tech guides</h3>
+                <p style="margin:0;">Step-by-step setup instructions for popular accessibility tools.</p>
+            </article>
+        </section>
+        <footer style="text-align:center;margin-top:1.5rem;color:#145214;font-weight:600;">Need more? Contact us for tailored support.</footer>
+    </main>
+    <script src="assets/accessibility-settings.js"></script>
+</body>
+</html>in
